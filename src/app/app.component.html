@@ -1,0 +1,35 @@
+<main class="container">
+  <h1>{{title}}</h1>
+
+  <section>
+    <h2>Create</h2>
+    <input type="text" #createData>
+    <button (click)="create(createData.value)">create</button>
+  </section>
+
+  <section>
+    <h2>Read</h2>
+    <!-- <pre>{{read()}}</pre> -->
+     <!-- <pre>{{database | json}}</pre> -->
+    <div *ngFor="let item of database">
+      <label [ngClass]="{completed: item.done}">
+        <input type="checkbox" [(ngModel)]="item.done"> {{item.name}}
+      </label>
+      <button (click)="delete(item.id)" [disabled]="item.done">delete</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Update</h2>
+    <input type="number" #updateId>
+    <input type="text" #updateData>
+    <button (click)="update(+updateId.value, updateData.value)">update</button>
+  </section>
+
+  <section>
+    <h2>Delete</h2>
+    <!-- <input type="number" #deleteId> -->
+    <input type="number" [(ngModel)]="numberState">
+    <button (click)="delete(numberState)">delete</button>
+  </section>
+</main>
